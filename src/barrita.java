@@ -35,7 +35,7 @@ public class barrita implements Runnable{
                     vida=false;
                 }       
             try {
-                Thread.sleep(60);
+                Thread.sleep(50);
             } catch (InterruptedException ex) {
             }
         }

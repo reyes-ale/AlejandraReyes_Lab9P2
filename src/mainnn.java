@@ -249,12 +249,13 @@ public class mainnn extends javax.swing.JFrame {
         archivoseleccionado = null;
         FileReader fr = null;
         BufferedReader br = null;
+          
         
         
         int op = fc.showOpenDialog(this);
         if (op == JFileChooser.APPROVE_OPTION) {
             archivoseleccionado = fc.getSelectedFile();
-            ArrayList <String> palabras = new ArrayList();
+           
             
             try {
                 fr = new FileReader(archivoseleccionado);
@@ -262,7 +263,7 @@ public class mainnn extends javax.swing.JFrame {
                 String line = "";
                 
                 while ((line=br.readLine()) != null){
-                    
+                    palabras.add(line);
                 }
                 
                 br.close();
@@ -275,18 +276,17 @@ public class mainnn extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
             
+            for (int i = 0; i < palabras.size(); i++) {
+                lineas = lineas + palabras.get(i) + "\n";
+            }
+            
             barrita b = new barrita(barra);
        b.setVida(true);
        
         Thread t = new Thread(b);
         t.start();   
         
-            System.out.println(b.isVida());
         
-            
-            
-            
-           
 
         }
     }//GEN-LAST:event_bt_subirarchivoMouseClicked
@@ -318,7 +318,7 @@ public class mainnn extends javax.swing.JFrame {
 
     private void barraStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_barraStateChanged
         if (barra.getValue() == 100){
-            
+            txt_area.setText(lineas);
         }
     }//GEN-LAST:event_barraStateChanged
 
@@ -375,4 +375,6 @@ public class mainnn extends javax.swing.JFrame {
     private javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
 protected File archivoseleccionado;
+protected ArrayList <String> palabras = new ArrayList();
+protected String lineas ="";
 }
