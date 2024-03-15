@@ -12,20 +12,30 @@ import javax.swing.JProgressBar;
  */
 public class barrita implements Runnable{
     protected JProgressBar barra;
+    protected boolean vida;
 
     public barrita(JProgressBar barra) {
         this.barra = barra;
     }
+
+    public boolean isVida() {
+        return vida;
+    }
+
+    public void setVida(boolean vida) {
+        this.vida = vida;
+    }
+    
     
     @Override
     public void run() {
-      while(true){
-            
-                barra.setValue(barra.getValue()+1);
-                if(barra.getValue()==100000000){
+      while(vida){
+                barra.setValue(barra.getValue()+10);
+                if(barra.getValue()==100){
+                    vida=false;
                 }       
             try {
-                Thread.sleep(0);
+                Thread.sleep(60);
             } catch (InterruptedException ex) {
             }
         }

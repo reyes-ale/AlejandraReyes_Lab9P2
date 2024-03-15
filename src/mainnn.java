@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -55,11 +56,12 @@ public class mainnn extends javax.swing.JFrame {
         jl_hora = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         bt_subirarchivo = new javax.swing.JButton();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        barra = new javax.swing.JProgressBar();
         jLabel4 = new javax.swing.JLabel();
         bt_guardar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_area = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,7 +147,12 @@ public class mainnn extends javax.swing.JFrame {
             }
         });
 
-        jProgressBar1.setForeground(new java.awt.Color(0, 153, 153));
+        barra.setForeground(new java.awt.Color(0, 153, 153));
+        barra.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                barraStateChanged(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Bell MT", 3, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -165,6 +172,13 @@ public class mainnn extends javax.swing.JFrame {
         txt_area.setRows(5);
         jScrollPane2.setViewportView(txt_area);
 
+        jButton1.setText("jButton1");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,11 +196,13 @@ public class mainnn extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_subirarchivo))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bt_subirarchivo)
+                                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(84, 84, 84))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -195,12 +211,14 @@ public class mainnn extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(bt_subirarchivo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -228,22 +246,23 @@ public class mainnn extends javax.swing.JFrame {
         JFileChooser fc = new JFileChooser();
         FileFilter filtro = new FileNameExtensionFilter("Archivos de texto","txt");
         fc.setFileFilter(filtro);
-        File archivo = null;
+        archivoseleccionado = null;
         FileReader fr = null;
         BufferedReader br = null;
         
         
         int op = fc.showOpenDialog(this);
         if (op == JFileChooser.APPROVE_OPTION) {
-            archivo = fc.getSelectedFile();
+            archivoseleccionado = fc.getSelectedFile();
+            ArrayList <String> palabras = new ArrayList();
             
             try {
-                fr = new FileReader(archivo);
+                fr = new FileReader(archivoseleccionado);
                 br = new BufferedReader(fr);
                 String line = "";
                 
                 while ((line=br.readLine()) != null){
-                    txt_area.setText(line);
+                    
                 }
                 
                 br.close();
@@ -256,10 +275,16 @@ public class mainnn extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
             
-            barrita b = new barrita(jProgressBar1);
-            Thread t2 = new Thread(b);
-            t2.start();
-
+            barrita b = new barrita(barra);
+       b.setVida(true);
+       
+        Thread t = new Thread(b);
+        t.start();   
+        
+            System.out.println(b.isVida());
+        
+            
+            
             
            
 
@@ -267,10 +292,35 @@ public class mainnn extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_subirarchivoMouseClicked
 
     private void bt_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarMouseClicked
-        File archivo = null;
+      
         FileWriter fw = null;
         BufferedWriter bw = null; 
+        
+        try {
+            fw = new FileWriter(archivoseleccionado);
+            bw = new BufferedWriter(fw);
+            
+            bw.write(txt_area.getText());
+            
+            bw.close();
+            fw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Cambios guardados exitosamente");
     }//GEN-LAST:event_bt_guardarMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+          
+            
+       
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void barraStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_barraStateChanged
+        if (barra.getValue() == 100){
+            
+        }
+    }//GEN-LAST:event_barraStateChanged
 
     /**
      * @param args the command line arguments
@@ -308,8 +358,10 @@ public class mainnn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar barra;
     private javax.swing.JButton bt_guardar;
     private javax.swing.JButton bt_subirarchivo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -317,10 +369,10 @@ public class mainnn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jl_fecha;
     private javax.swing.JLabel jl_hora;
     private javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
+protected File archivoseleccionado;
 }
