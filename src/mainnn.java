@@ -1,3 +1,20 @@
+
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -17,7 +34,7 @@ public class mainnn extends javax.swing.JFrame {
         Hilohorafecha h =new Hilohorafecha(jl_hora,jl_fecha);
         Thread t = new Thread(h);
         t.start();      
-        
+            
     }
 
     /**
@@ -38,11 +55,11 @@ public class mainnn extends javax.swing.JFrame {
         jl_hora = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         bt_subirarchivo = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel4 = new javax.swing.JLabel();
         bt_guardar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_area = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,11 +139,11 @@ public class mainnn extends javax.swing.JFrame {
         bt_subirarchivo.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         bt_subirarchivo.setForeground(new java.awt.Color(0, 0, 0));
         bt_subirarchivo.setText("Subir Archivo");
-
-        jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        bt_subirarchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_subirarchivoMouseClicked(evt);
+            }
+        });
 
         jProgressBar1.setForeground(new java.awt.Color(0, 153, 153));
 
@@ -138,6 +155,15 @@ public class mainnn extends javax.swing.JFrame {
         bt_guardar.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         bt_guardar.setForeground(new java.awt.Color(0, 0, 0));
         bt_guardar.setText("Guardar");
+        bt_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_guardarMouseClicked(evt);
+            }
+        });
+
+        txt_area.setColumns(20);
+        txt_area.setRows(5);
+        jScrollPane2.setViewportView(txt_area);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,18 +176,18 @@ public class mainnn extends javax.swing.JFrame {
                         .addGap(193, 193, 193)
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_subirarchivo)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(79, 79, 79))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(239, 239, 239)
                         .addComponent(bt_guardar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_subirarchivo))
+                        .addGap(84, 84, 84))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,8 +201,8 @@ public class mainnn extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bt_guardar)
                 .addGap(21, 21, 21))
@@ -197,6 +223,54 @@ public class mainnn extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_subirarchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_subirarchivoMouseClicked
+        JFileChooser fc = new JFileChooser();
+        FileFilter filtro = new FileNameExtensionFilter("Archivos de texto","txt");
+        fc.setFileFilter(filtro);
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        
+        
+        int op = fc.showOpenDialog(this);
+        if (op == JFileChooser.APPROVE_OPTION) {
+            archivo = fc.getSelectedFile();
+            
+            try {
+                fr = new FileReader(archivo);
+                br = new BufferedReader(fr);
+                String line = "";
+                
+                while ((line=br.readLine()) != null){
+                    txt_area.setText(line);
+                }
+                
+                br.close();
+                fr.close();
+                
+               
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            
+            barrita b = new barrita(jProgressBar1);
+            Thread t2 = new Thread(b);
+            t2.start();
+
+            
+           
+
+        }
+    }//GEN-LAST:event_bt_subirarchivoMouseClicked
+
+    private void bt_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarMouseClicked
+        File archivo = null;
+        FileWriter fw = null;
+        BufferedWriter bw = null; 
+    }//GEN-LAST:event_bt_guardarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -244,9 +318,9 @@ public class mainnn extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jl_fecha;
     private javax.swing.JLabel jl_hora;
+    private javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
 }

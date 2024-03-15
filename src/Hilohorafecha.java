@@ -14,8 +14,8 @@ import javax.swing.JLabel;
  * @author aleja
  */
 public class Hilohorafecha implements Runnable{
-    private JLabel hora;
-    private JLabel fecha;
+    protected JLabel hora;
+    protected JLabel fecha;
     
     public Hilohorafecha(JLabel hora, JLabel fecha) {
         this.hora = hora;
