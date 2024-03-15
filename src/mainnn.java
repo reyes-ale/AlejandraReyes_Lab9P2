@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -61,7 +62,6 @@ public class mainnn extends javax.swing.JFrame {
         bt_guardar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_area = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,13 +172,6 @@ public class mainnn extends javax.swing.JFrame {
         txt_area.setRows(5);
         jScrollPane2.setViewportView(txt_area);
 
-        jButton1.setText("jButton1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -196,13 +189,11 @@ public class mainnn extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(bt_subirarchivo)
-                                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_subirarchivo)
+                            .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(84, 84, 84))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -211,9 +202,7 @@ public class mainnn extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1)
-                .addGap(12, 12, 12)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(bt_subirarchivo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
@@ -249,7 +238,8 @@ public class mainnn extends javax.swing.JFrame {
         archivoseleccionado = null;
         FileReader fr = null;
         BufferedReader br = null;
-          
+        ArrayList <String> palabras = new ArrayList();
+         palabras.clear(); 
         
         
         int op = fc.showOpenDialog(this);
@@ -258,12 +248,14 @@ public class mainnn extends javax.swing.JFrame {
            
             
             try {
+                
                 fr = new FileReader(archivoseleccionado);
                 br = new BufferedReader(fr);
                 String line = "";
                 
                 while ((line=br.readLine()) != null){
-                    palabras.add(line);
+                   temp += line;
+                   temp += "\n";
                 }
                 
                 br.close();
@@ -276,11 +268,7 @@ public class mainnn extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
             
-            for (int i = 0; i < palabras.size(); i++) {
-                lineas = lineas + palabras.get(i) + "\n";
-            }
-            
-            barrita b = new barrita(barra);
+        barrita b = new barrita(barra);
        b.setVida(true);
        
         Thread t = new Thread(b);
@@ -294,10 +282,11 @@ public class mainnn extends javax.swing.JFrame {
     private void bt_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarMouseClicked
       
         FileWriter fw = null;
+        
         BufferedWriter bw = null; 
         
         try {
-            fw = new FileWriter(archivoseleccionado);
+            fw = new FileWriter(archivoseleccionado,false);
             bw = new BufferedWriter(fw);
             
             bw.write(txt_area.getText());
@@ -307,18 +296,16 @@ public class mainnn extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Cambios guardados exitosamente");
+        JOptionPane.showMessageDialog(this, "Cambios guardados exitosamente");
+        txt_area.setText("");
+        barra.setValue(0);
     }//GEN-LAST:event_bt_guardarMouseClicked
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-          
-            
-       
-    }//GEN-LAST:event_jButton1MouseClicked
 
     private void barraStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_barraStateChanged
         if (barra.getValue() == 100){
-            txt_area.setText(lineas);
+            txt_area.setText(temp);
+            temp="";
+            
         }
     }//GEN-LAST:event_barraStateChanged
 
@@ -361,7 +348,6 @@ public class mainnn extends javax.swing.JFrame {
     private javax.swing.JProgressBar barra;
     private javax.swing.JButton bt_guardar;
     private javax.swing.JButton bt_subirarchivo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -374,7 +360,8 @@ public class mainnn extends javax.swing.JFrame {
     private javax.swing.JLabel jl_hora;
     private javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
-protected File archivoseleccionado;
-protected ArrayList <String> palabras = new ArrayList();
+
+    protected File archivoseleccionado;
 protected String lineas ="";
+String temp = "";
 }
