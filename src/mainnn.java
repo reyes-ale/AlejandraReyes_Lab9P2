@@ -50,15 +50,15 @@ public class mainnn extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jl_bienvenido = new javax.swing.JLabel();
+        jl_fechadhoy = new javax.swing.JLabel();
+        jl_horaactual = new javax.swing.JLabel();
         jl_fecha = new javax.swing.JLabel();
         jl_hora = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jl_boroacloud = new javax.swing.JLabel();
         bt_subirarchivo = new javax.swing.JButton();
         barra = new javax.swing.JProgressBar();
-        jLabel4 = new javax.swing.JLabel();
+        jl_subiendoarchivo = new javax.swing.JLabel();
         bt_guardar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_area = new javax.swing.JTextArea();
@@ -69,17 +69,17 @@ public class mainnn extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel2.setFont(new java.awt.Font("Bell MT", 3, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Bienvenido");
+        jl_bienvenido.setFont(new java.awt.Font("Bell MT", 3, 20)); // NOI18N
+        jl_bienvenido.setForeground(new java.awt.Color(255, 255, 255));
+        jl_bienvenido.setText("Bienvenido");
 
-        jLabel3.setFont(new java.awt.Font("Bell MT", 3, 20)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Fecha de hoy");
+        jl_fechadhoy.setFont(new java.awt.Font("Bell MT", 3, 20)); // NOI18N
+        jl_fechadhoy.setForeground(new java.awt.Color(255, 255, 255));
+        jl_fechadhoy.setText("Fecha de hoy");
 
-        jLabel5.setFont(new java.awt.Font("Bell MT", 3, 20)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Hora actual");
+        jl_horaactual.setFont(new java.awt.Font("Bell MT", 3, 20)); // NOI18N
+        jl_horaactual.setForeground(new java.awt.Color(255, 255, 255));
+        jl_horaactual.setText("Hora actual");
 
         jl_fecha.setFont(new java.awt.Font("Bell MT", 1, 20)); // NOI18N
         jl_fecha.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,7 +95,7 @@ public class mainnn extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jl_fechadhoy, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -103,7 +103,7 @@ public class mainnn extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jl_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jl_bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jl_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,16 +111,16 @@ public class mainnn extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(51, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_horaactual, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(32, 32, 32)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addComponent(jLabel2)
+                .addComponent(jl_bienvenido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(jl_fechadhoy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jl_fecha)
                 .addGap(86, 86, 86)
@@ -129,13 +129,13 @@ public class mainnn extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(228, 228, 228)
-                    .addComponent(jLabel5)
+                    .addComponent(jl_horaactual)
                     .addContainerGap(235, Short.MAX_VALUE)))
         );
 
-        jLabel1.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Boroa Cloud");
+        jl_boroacloud.setFont(new java.awt.Font("Bell MT", 1, 36)); // NOI18N
+        jl_boroacloud.setForeground(new java.awt.Color(0, 0, 0));
+        jl_boroacloud.setText("Boroa Cloud");
 
         bt_subirarchivo.setBackground(new java.awt.Color(0, 204, 204));
         bt_subirarchivo.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
@@ -154,9 +154,9 @@ public class mainnn extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Bell MT", 3, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Subiendo archivo");
+        jl_subiendoarchivo.setFont(new java.awt.Font("Bell MT", 3, 14)); // NOI18N
+        jl_subiendoarchivo.setForeground(new java.awt.Color(0, 0, 0));
+        jl_subiendoarchivo.setText("Subiendo archivo");
 
         bt_guardar.setBackground(new java.awt.Color(0, 204, 204));
         bt_guardar.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
@@ -181,7 +181,7 @@ public class mainnn extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(193, 193, 193)
-                        .addComponent(jLabel1)
+                        .addComponent(jl_boroacloud)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(239, 239, 239)
@@ -191,7 +191,7 @@ public class mainnn extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jl_subiendoarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bt_subirarchivo)
                             .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(84, 84, 84))))
@@ -201,11 +201,11 @@ public class mainnn extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(jLabel1)
+                .addComponent(jl_boroacloud)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(bt_subirarchivo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(jl_subiendoarchivo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -261,20 +261,19 @@ public class mainnn extends javax.swing.JFrame {
                 br.close();
                 fr.close();
                 
-               
-            } catch (FileNotFoundException ex) {
+                       } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            
-        barrita b = new barrita(barra);
-       b.setVida(true);
-       
-        Thread t = new Thread(b);
-        t.start();   
-        
-        
+
+            barrita b = new barrita(barra);
+            b.setVida(true);
+
+            Thread t = new Thread(b);
+            t.start();
+
+
 
         }
     }//GEN-LAST:event_bt_subirarchivoMouseClicked
@@ -348,16 +347,16 @@ public class mainnn extends javax.swing.JFrame {
     private javax.swing.JProgressBar barra;
     private javax.swing.JButton bt_guardar;
     private javax.swing.JButton bt_subirarchivo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jl_bienvenido;
+    private javax.swing.JLabel jl_boroacloud;
     private javax.swing.JLabel jl_fecha;
+    private javax.swing.JLabel jl_fechadhoy;
     private javax.swing.JLabel jl_hora;
+    private javax.swing.JLabel jl_horaactual;
+    private javax.swing.JLabel jl_subiendoarchivo;
     private javax.swing.JTextArea txt_area;
     // End of variables declaration//GEN-END:variables
 
